@@ -228,42 +228,104 @@ export default function StoryBot() {
         {story && (
           <div
             style={{
-              padding: 18,
-              borderRadius: 10,
+              padding: "0",
+              borderRadius: 12,
               background: "#171f2c",
               color: "var(--text-color)",
               border: "1px solid var(--border-color)",
               marginTop: 8,
+              overflow: "hidden",
+              boxShadow: "0 3px 10px 0 rgba(60,120,200,0.12)",
             }}
+            data-testid="storybot-results"
           >
-            <div style={{ fontWeight: "bold", fontSize: "1.20rem", color: "var(--base-light)" }}>
-              {story.title}
+            {/* Title section */}
+            <div
+              style={{
+                background: "linear-gradient(90deg, var(--base-light) 0%, #4A90E2 100%)",
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: "1.45rem",
+                padding: "16px 20px 10px 20px",
+                letterSpacing: "0.015em"
+              }}
+            >
+              <span style={{ letterSpacing: "0.02em" }}>Title:</span>
+              <div style={{ fontFamily: "'Georgia',serif", fontSize: "1.25em", marginTop: 2 }}>{story.title}</div>
             </div>
-            <div style={{ marginTop: 10, marginBottom: 8 }}>{story.story}</div>
+
+            {/* Main story */}
+            <div
+              style={{
+                background: "transparent",
+                borderTop: "1px solid var(--border-color)",
+                padding: "20px 20px 10px 20px",
+                lineHeight: 1.7,
+                color: "#eafdff",
+                fontWeight: 500,
+                fontSize: "1.08rem",
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: 700,
+                  fontSize: "1.06em",
+                  color: "var(--base-light)",
+                  letterSpacing: "0.01em",
+                  marginBottom: 4,
+                  display: "inline-block"
+                }}
+              >
+                Main story
+              </span>
+              <div>{story.story}</div>
+            </div>
+
+            {/* Plot Twist (optional) */}
             {story.plotTwist && (
               <div
                 style={{
-                  background: "rgba(64,220,220,0.07)",
-                  borderRadius: 6,
-                  padding: "8px 10px",
+                  borderTop: "1px solid var(--border-color)",
+                  background: "rgba(64,220,220,0.10)",
+                  borderLeft: "5px solid var(--base-light)",
+                  margin: "0 12px",
                   marginBottom: 6,
+                  borderRadius: 8,
+                  padding: "14px 18px 10px 20px",
                   color: "var(--base-light)",
-                  fontWeight: 500,
+                  fontWeight: 600,
+                  fontSize: "1.06rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  marginTop: 4
                 }}
               >
-                🌀 <b>Plot twist:</b> {story.plotTwist}
+                <span role="img" aria-label="twist" style={{ fontSize: "1.2em" }}>🌀</span>
+                <span>
+                  <span style={{ color: "#25bee7", marginRight: 4 }}>Plot twist:</span>
+                  {story.plotTwist}
+                </span>
               </div>
             )}
+
+            {/* Character Description (optional) */}
             {story.characterDescription && (
               <div
                 style={{
-                  background: "rgba(255,149,0,0.10)",
-                  borderRadius: 6,
-                  padding: "7px 10px",
+                  borderTop: "1px solid var(--border-color)",
+                  background: "rgba(255,149,0,0.13)",
+                  margin: "0 12px 12px 12px",
+                  borderRadius: 8,
+                  padding: "14px 18px 12px 20px",
                   color: "#ff9500",
+                  fontWeight: 600,
+                  fontSize: "1.04rem",
+                  marginTop: 4
                 }}
               >
-                <b>Character:</b> {story.characterDescription}
+                <span style={{ color: "#ff9500", fontWeight: 700 }}>Character Description:</span>
+                <div style={{ marginTop: 4 }}>{story.characterDescription}</div>
               </div>
             )}
           </div>
