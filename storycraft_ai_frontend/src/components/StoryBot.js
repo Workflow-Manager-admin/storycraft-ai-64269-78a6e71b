@@ -18,22 +18,35 @@ const TONE_OPTIONS = [
   { value: "sci-fi", label: "Sci-Fi" },
 ];
 
+/**
+ * PUBLIC_INTERFACE
+ * Simulate a StoryBot API response with all elements in user-selected order.
+ * Assembles title, main story, (optional) plot twist and character description as needed.
+ */
 function fakeStoryApi({ prompt, tone, plotTwist, charDesc, age }) {
-  // Simulate story generation API
-  // PUBLIC_INTERFACE
   return new Promise((resolve) => {
     setTimeout(() => {
+      // Title construction
+      const title = `The ${tone.charAt(0).toUpperCase() + tone.slice(1)} Tale: "${prompt.substring(0,30)}..."`;
+
+      // Body construction
+      let mainStory = `Once upon a time, inspired by your prompt "${prompt}", a ${tone} story unfolded${age && age.trim() ? " for readers (age: " + age.trim() + ")" : ""}.`;
+
+      // Optionally add twist and character description
+      let twistSec = plotTwist
+        ? "🌀 Suddenly, an unexpected event changed everything! "
+        : null;
+      let charSec = charDesc
+        ? "Meet Jamie, a clever protagonist with a knack for surprises."
+        : null;
+
       resolve({
-        title: `The ${tone.charAt(0).toUpperCase() + tone.slice(1)} Tale: "${prompt.substring(0,30)}..."`,
-        story: `Once upon a time, inspired by your prompt "${prompt}", a ${tone} story unfolded for readers ${age ? "(age: " + age + ")" : ""}.`,
-        plotTwist: plotTwist
-          ? "Suddenly, an unexpected event changed everything!"
-          : null,
-        characterDescription: charDesc
-          ? "Meet Jamie, a clever protagonist with a knack for surprises."
-          : null,
+        title,
+        story: mainStory,
+        plotTwist: twistSec,
+        characterDescription: charSec,
       });
-    }, 900);
+    }, 700);
   });
 }
 
