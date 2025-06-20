@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/storycraft-ai-64269-78a6e71b/storycraft_ai_frontend"
+}
